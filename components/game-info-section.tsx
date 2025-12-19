@@ -1,53 +1,62 @@
+"use client"
+
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Download, ExternalLink } from "lucide-react"
+import { ExternalLink } from "lucide-react"
 
 interface GameInfoSectionProps {
   logo: string
-  title: string
   description: string
-  image: string
 }
 
-export function GameInfoSection({ logo, title, description, image }: GameInfoSectionProps) {
+export function GameInfoSection({ logo, description }: GameInfoSectionProps) {
   return (
-    <div className="w-full space-y-6 px-4 py-8">
-      {/* Logo and Title */}
-      <div className="flex items-start gap-4">
-        <Image src={logo || "/placeholder.svg"} alt={title} width={80} height={80} className="rounded-lg" />
-        <div className="flex-1">
-          <h3 className="text-2xl font-bold text-white">{title}</h3>
+    <div className="relative w-full h-[520px] rounded-3xl overflow-hidden">
+      {/* Background Image */}
+      <Image
+        src="/images/toto.jpg"
+        alt="Burn Point Gameplay"
+        fill
+        priority
+        className="object-cover"
+      />
+
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
+
+      {/* Bottom Content */}
+      <div className="relative z-10 flex h-full flex-col justify-end px-5 pb-6 space-y-4">
+        {/* Logo + Description */}
+        <div className="space-y-2">
+          <Image
+            src={logo}
+            alt="Burn Point"
+            width={72}
+            height={72}
+            className="rounded-md"
+          />
+
+          <p className="text-sm text-white/70 leading-snug max-w-[90%]">
+            {description}
+          </p>
         </div>
-      </div>
 
-      {/* Description */}
-      <p className="text-white/70 text-sm leading-relaxed">{description}</p>
+        {/* Buttons */}
+        <div className="flex gap-3 pt-2">
+          <Button
+            className="h-9 px-5 text-sm font-medium bg-white text-black rounded-full hover:bg-white/90"
+          >
+            Download Now
+          </Button>
 
-      {/* Action Buttons */}
-      <div className="flex flex-col gap-3 items-center">
-        <Button size="lg" className="w-full bg-white text-black hover:bg-white/90 font-semibold rounded-full">
-          <Download className="w-4 h-4 mr-2" />
-          Download Now
-        </Button>
-        <Button
-          size="lg"
-          variant="outline"
-          className="w-auto max-w-[70%] mx-auto py-2 text-base min-h-[44px] bg-transparent border-2 border-primary text-white hover:bg-primary/20 font-semibold rounded-full"
-        >
-          Learn More
-          <ExternalLink className="w-4 h-4 ml-2" />
-        </Button>
-      </div>
-
-      {/* Featured Image */}
-      <div className="w-full aspect-video rounded-2xl overflow-hidden">
-        <Image
-          src={image || "/placeholder.svg"}
-          alt={title}
-          width={600}
-          height={400}
-          className="w-full h-full object-cover"
-        />
+          <Button
+            variant="outline"
+            className="h-9 px-5 text-sm font-medium rounded-full border border-white/40 text-white hover:bg-white/10"
+          >
+            Learn More
+            <ExternalLink className="w-3.5 h-3.5 ml-1.5" />
+          </Button>
+        </div>
       </div>
     </div>
   )

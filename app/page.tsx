@@ -34,39 +34,12 @@ export default function HomePage() {
         <div className="container mx-auto max-w-md">
           <GameInfoSection
             logo="/images/burn-point-logo.png"
-            title="BURN POINT"
             description="In BURN POINT, you control your survival. As the last racer in a world where winning means everything, it's up to you to conquer the streets and own the drift. Make your choices, face the consequences."
-            image="/images/hero-drift.png"
           />
         </div>
       </section>
 
-      {/* Additional Game Cards */}
-      <section className="py-8 px-4 space-y-8">
-        <div className="container mx-auto max-w-md">
-          <GameCard title="Urban Warriors" subtitle="TACTICAL ACTION" image="/images/hero3.png" showButtons={false} />
-        </div>
-
-        <div className="container mx-auto max-w-md">
-          <GameCard
-            title="Shadow Operations"
-            subtitle="STEALTH SHOOTER"
-            image="/images/sniper.jpeg"
-            showButtons={false}
-          />
-        </div>
-      </section>
-
-      <section className="py-12 px-4 bg-black">
-        <div className="container mx-auto max-w-md">
-          <h3 className="text-lg font-bold text-white mb-6">Explore More Games</h3>
-          <div className="grid grid-cols-3 gap-4">
-            {exploreGames.map((game, index) => (
-              <GameThumbnail key={index} image={game.image} title={game.title} />
-            ))}
-          </div>
-        </div>
-      </section>
+   
 
       <Footer />
     </main>

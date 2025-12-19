@@ -1,23 +1,28 @@
+// components/GameCarousel.tsx (example parent that switches 1=blue, 2=orange, 3=grey)
 "use client"
 
 import { useState } from "react"
 import { GameCard } from "./game-card"
+import { Button } from "@/components/ui/button"
 
 const CARDS = [
   {
     title: "Own the Drift",
     subtitle: "BURN POINT",
-    image: "/images/hero-drift.png",
+    image: "/games/burnpoint.jpg",
+    logo: "/games/burnpoint-logo.png",
   },
   {
-    title: "Urban Warriors",
-    subtitle: "TACTICAL ACTION",
-    image: "/images/hero3.png",
+    title: "Sky Raiders",
+    subtitle: "AURORA",
+    image: "/games/skyraiders.jpg",
+    logo: "/games/skyraiders-logo.png",
   },
   {
-    title: "Sniper Ops",
-    subtitle: "TACTICAL",
-    image: "/images/sniper.jpeg",
+    title: "Neon Runner",
+    subtitle: "METRO",
+    image: "/games/neonrunner.jpg",
+    logo: "/games/neonrunner-logo.png",
   },
 ]
 
@@ -41,30 +46,21 @@ export default function GameCarousel() {
         title={card.title}
         subtitle={card.subtitle}
         image={card.image}
+        logo={card.logo}
         progress={{ active, total: CARDS.length }}
         paused={paused}
         onPauseToggle={() => setPaused((p) => !p)}
         accentColor={theme.accent}
         accentTextColor={theme.fg}
-        pageBgColor="#000000"
+        pageBgColor="#000000" // change if your page bg isn't black
       />
 
-      {/* simple next/prev (optional) */}
-      <div className="mt-4 flex justify-center gap-2">
-        <button
-          className="px-4 py-2 rounded-md bg-white/10 text-white"
-          onClick={() => setActive((a) => (a + CARDS.length - 1) % CARDS.length)}
-          type="button"
-        >
+      {/* demo controls */}
+      <div className="mt-4 flex gap-2 justify-center">
+        <Button variant="outline" onClick={() => setActive((a) => (a + CARDS.length - 1) % CARDS.length)}>
           Prev
-        </button>
-        <button
-          className="px-4 py-2 rounded-md bg-white/10 text-white"
-          onClick={() => setActive((a) => (a + 1) % CARDS.length)}
-          type="button"
-        >
-          Next
-        </button>
+        </Button>
+        <Button onClick={() => setActive((a) => (a + 1) % CARDS.length)}>Next</Button>
       </div>
     </div>
   )

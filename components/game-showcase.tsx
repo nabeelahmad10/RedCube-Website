@@ -15,44 +15,86 @@ export function GameShowcase() {
   const collage = [...games, ...games, ...games]
 
   return (
-    <section className="py-12 px-4">
-      <div className="container mx-auto max-w-md">
-        <div className="flex items-start justify-between gap-6 min-w-0">
-          <h2 className="text-3xl font-bold text-white text-balance leading-tight flex-1 min-w-0">
+    <section className="py-8 px-4 overflow-visible">
+      <div className="container mx-auto max-w-6xl overflow-visible">
+        {/* ✅ Side-by-side, NO overlap */}
+        <div className="flex items-center justify-between gap-2 sm:gap-4 md:gap-6">
+          {/* TEXT */}
+          <h2
+            className="
+              text-white font-extrabold tracking-tight leading-[1.08]
+              text-[20px] xs:text-[22px] sm:text-[32px] md:text-[48px] lg:text-[72px]
+              flex-1 min-w-0
+              pr-2
+            "
+          >
             Committed to
             <br />
             Entertainment.
           </h2>
 
-          <div className="shrink-0 w-48">
-            <div className="flex flex-col gap-2 items-end">
-              <div className="flex gap-2 justify-end">
-                {collage.slice(0, 4).map((game, idx) => (
-                  <GameThumbnail key={`r1-${idx}`} image={game.image} title={game.title} className="w-8 h-8 rounded-md" />
-                ))}
-              </div>
-              <div className="flex gap-2 justify-end">
-                {collage.slice(4, 10).map((game, idx) => (
+          {/* COLLAGE (real size, not scaled) */}
+          <div className="shrink-0">
+            <div className="flex flex-col items-end gap-1.5 xs:gap-2 sm:gap-3 md:gap-4">
+              {/* Row 1 (4) */}
+              <div className="flex justify-end gap-1.5 xs:gap-2 sm:gap-3 md:gap-4">
+                {collage.slice(0, 4).map((g, i) => (
                   <GameThumbnail
-                    key={`r2-${idx}`}
-                    image={game.image}
-                    title={game.title}
-                    className="w-8 h-8 rounded-md"
+                    key={`r1-${i}`}
+                    image={g.image}
+                    title={g.title}
+                    className="
+                      w-[26px] h-[26px]
+                      xs:w-[30px] xs:h-[30px]
+                      sm:w-[44px] sm:h-[44px]
+                      md:w-[74px] md:h-[74px]
+                      rounded-[8px] sm:rounded-[12px] md:rounded-[18px]
+                      overflow-hidden
+                    "
                   />
                 ))}
               </div>
-              <div className="flex gap-2 justify-end">
-                {collage.slice(10, 14).map((game, idx) => (
+
+              {/* Row 2 (6) */}
+              <div className="flex justify-end gap-1.5 xs:gap-2 sm:gap-3 md:gap-4">
+                {collage.slice(4, 10).map((g, i) => (
                   <GameThumbnail
-                    key={`r3-${idx}`}
-                    image={game.image}
-                    title={game.title}
-                    className="w-8 h-8 rounded-md"
+                    key={`r2-${i}`}
+                    image={g.image}
+                    title={g.title}
+                    className="
+                      w-[26px] h-[26px]
+                      xs:w-[30px] xs:h-[30px]
+                      sm:w-[44px] sm:h-[44px]
+                      md:w-[74px] md:h-[74px]
+                      rounded-[8px] sm:rounded-[12px] md:rounded-[18px]
+                      overflow-hidden
+                    "
+                  />
+                ))}
+              </div>
+
+              {/* Row 3 (4) */}
+              <div className="flex justify-end gap-1.5 xs:gap-2 sm:gap-3 md:gap-4">
+                {collage.slice(10, 14).map((g, i) => (
+                  <GameThumbnail
+                    key={`r3-${i}`}
+                    image={g.image}
+                    title={g.title}
+                    className="
+                      w-[26px] h-[26px]
+                      xs:w-[30px] xs:h-[30px]
+                      sm:w-[44px] sm:h-[44px]
+                      md:w-[74px] md:h-[74px]
+                      rounded-[8px] sm:rounded-[12px] md:rounded-[18px]
+                      overflow-hidden
+                    "
                   />
                 ))}
               </div>
             </div>
           </div>
+          {/* /collage */}
         </div>
       </div>
     </section>
