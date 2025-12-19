@@ -24,7 +24,7 @@ export function GameInfoSection({ logo, title, description, image }: GameInfoSec
       <p className="text-white/70 text-sm leading-relaxed">{description}</p>
 
       {/* Action Buttons */}
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 items-center">
         <Button size="lg" className="w-full bg-white text-black hover:bg-white/90 font-semibold rounded-full">
           <Download className="w-4 h-4 mr-2" />
           Download Now
@@ -32,7 +32,7 @@ export function GameInfoSection({ logo, title, description, image }: GameInfoSec
         <Button
           size="lg"
           variant="outline"
-          className="w-full bg-transparent border-2 border-primary text-white hover:bg-primary/20 font-semibold rounded-full"
+          className="w-auto max-w-[70%] mx-auto py-2 text-base min-h-[44px] bg-transparent border-2 border-primary text-white hover:bg-primary/20 font-semibold rounded-full"
         >
           Learn More
           <ExternalLink className="w-4 h-4 ml-2" />

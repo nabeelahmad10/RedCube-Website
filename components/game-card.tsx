@@ -84,15 +84,15 @@ export function GameCard(props: GameCardProps) {
 
           {/* Action Buttons */}
           {showButtons && (
-            <div className="flex flex-col gap-4">
-              <Button size="lg" className="w-full bg-white text-black hover:bg-white/90 font-semibold rounded-full">
+            <div className="flex flex-col gap-4 items-center">
+              <Button size="lg" className="w-auto max-w-[70%] mx-auto py-2 text-base min-h-[44px] bg-white text-black hover:bg-white/90 font-semibold rounded-full">
                 Watch Trailer
                 <Play className="w-4 h-4 ml-2" />
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="w-full bg-transparent border-2 border-white/30 text-white hover:bg-white/10 font-semibold rounded-full"
+                className="w-auto max-w-[70%] mx-auto py-2 text-base min-h-[44px] bg-transparent border-2 border-white/30 text-white hover:bg-white/10 font-semibold rounded-full"
               >
                 Learn More
                 <ArrowUpRight className="w-4 h-4 ml-2" />
