@@ -183,12 +183,8 @@ export function GameCard(props: GameCardProps) {
                   w-full max-w-[360px] mx-auto
                   h-11 px-6
                   text-[15px] font-semibold rounded-full
-                  hover:opacity-90
+                  bg-white text-black hover:opacity-90
                 "
-                style={{
-                  backgroundColor: "var(--primary)",
-                  color: "var(--primary-foreground)",
-                }}
               >
                 Watch Trailer
                 <Play className="w-4 h-4 ml-2" />
