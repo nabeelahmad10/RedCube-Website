@@ -183,8 +183,12 @@ export function GameCard(props: GameCardProps) {
                   w-full max-w-[360px] mx-auto
                   h-11 px-6
                   text-[15px] font-semibold rounded-full
-                  bg-primary text-primary-foreground hover:opacity-90
+                  hover:opacity-90
                 "
+                style={{
+                  backgroundColor: "var(--primary)",
+                  color: "var(--primary-foreground)",
+                }}
               >
                 Watch Trailer
                 <Play className="w-4 h-4 ml-2" />
@@ -197,9 +201,11 @@ export function GameCard(props: GameCardProps) {
                   w-full max-w-[360px] mx-auto
                   h-11 px-6
                   text-[15px] font-semibold rounded-full
-                  bg-transparent text-white hover:bg-white/10
                   border-2 border-white/20
                 "
+                style={{
+                  color: "white",
+                }}
               >
                 Learn More
                 <ArrowUpRight className="w-4 h-4 ml-2" />

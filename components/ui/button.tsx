@@ -13,8 +13,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const baseStyles = "inline-flex items-center justify-center font-semibold transition-colors focus:outline-none"
     
     const variantStyles = {
-      default: "bg-white text-black hover:bg-white/90",
-      outline: "border-2 border-primary bg-transparent text-white hover:bg-primary/20",
+      default: "",
+      outline: "border-2 bg-transparent hover:bg-white/10",
     }
     
     const sizeStyles = {
