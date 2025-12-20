@@ -1,3 +1,4 @@
+import React from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowUpRight, Play } from "lucide-react"
@@ -37,22 +38,34 @@ export function GameCard(props: GameCardProps) {
 
   const totalDots = Math.max(0, progress?.total ?? 0)
   const activeDot = progress?.active ?? 0
+
   const R = 44
+
+  const NOTCH_W = 112
+  const NOTCH_H = 82
+  const NOTCH_R = 56
+
+  const PAUSE_W = 104
+  const PAUSE_H = 56
+
+  // ✅ ONLY TWO OUTWARD CUTS (tweak these)
+  const CUT_SIZE_TOP = 56
+  const CUT_SIZE_BOTTOM = 56
+
+  // where they sit (from bottom of the card)
+  // adjust these 2 numbers to match your exact screenshot
+  const CUT_TOP_Y = NOTCH_H - 8 // cut near top of the notch area
+  const CUT_BOTTOM_Y = 18       // cut near bottom curve area
 
   return (
     <div
       className="relative w-full aspect-9/14 group"
       style={
         {
-          // ✅ Override shadcn tokens inside this card only
           ["--primary" as any]: accentColor,
           ["--primary-foreground" as any]: accentTextColor,
-
-          // optional: also set accent vars if you use them elsewhere
           ["--accent" as any]: accentColor,
           ["--accent-foreground" as any]: accentTextColor,
-
-          // notch cutout bg (match page)
           ["--pageBg" as any]: pageBgColor,
         } as React.CSSProperties
       }
@@ -66,6 +79,38 @@ export function GameCard(props: GameCardProps) {
           priority
           className={`${imageClassName ?? "object-cover object-center"} transition-transform duration-500 group-hover:scale-105`}
         />
+
+        {/* ✅ TWO OUTWARD CUTS ONLY (pageBg circles) */}
+        {showButtons && (
+          <>
+            {/* Top cut (your top circle) */}
+            <div
+              className="absolute right-0 pointer-events-none"
+              style={{
+                width: CUT_SIZE_TOP,
+                height: CUT_SIZE_TOP,
+                borderRadius: 9999,
+                background: "var(--pageBg)",
+                // sits on the right edge, slightly inside so it "bites" the image
+                bottom: CUT_TOP_Y,
+                transform: "translateX(45%)",
+              }}
+            />
+
+            {/* Bottom cut (your bottom circle) */}
+            <div
+              className="absolute right-0 pointer-events-none"
+              style={{
+                width: CUT_SIZE_BOTTOM,
+                height: CUT_SIZE_BOTTOM,
+                borderRadius: 9999,
+                background: "var(--pageBg)",
+                bottom: CUT_BOTTOM_Y,
+                transform: "translateX(45%)",
+              }}
+            />
+          </>
+        )}
 
         {/* Gradient Overlay */}
         <div
@@ -92,16 +137,21 @@ export function GameCard(props: GameCardProps) {
           <div
             className="absolute bottom-0 right-0"
             style={{
-              width: 130,
-              height: 96,
+              width: NOTCH_W,
+              height: NOTCH_H,
               background: "var(--pageBg)",
-              borderTopLeftRadius: 64,
+              borderTopLeftRadius: NOTCH_R,
             }}
           />
         )}
 
         {/* Content */}
-        <div className="absolute inset-0 flex flex-col justify-end p-6 gap-4">
+        <div
+          className={[
+            "absolute inset-0 flex flex-col justify-end p-6 gap-3",
+            showButtons ? "pr-24 pb-8" : "",
+          ].join(" ")}
+        >
           {/* Logo and Title */}
           <div className="space-y-2">
             {logo ? (
@@ -126,11 +176,15 @@ export function GameCard(props: GameCardProps) {
 
           {/* Action Buttons */}
           {showButtons && (
-            <div className="flex flex-col gap-4 items-center">
+            <div className="flex flex-col gap-3 items-center">
               <Button
                 size="lg"
-                className="w-auto max-w-[70%] mx-auto py-2 text-base min-h-[44px] font-semibold rounded-full
-                           bg-primary text-primary-foreground hover:opacity-90"
+                className="
+                  w-full max-w-[360px] mx-auto
+                  h-11 px-6
+                  text-[15px] font-semibold rounded-full
+                  bg-primary text-primary-foreground hover:opacity-90
+                "
               >
                 Watch Trailer
                 <Play className="w-4 h-4 ml-2" />
@@ -139,8 +193,13 @@ export function GameCard(props: GameCardProps) {
               <Button
                 size="lg"
                 variant="outline"
-                className="w-auto max-w-[70%] mx-auto py-2 text-base min-h-[44px] font-semibold rounded-full
-                           bg-transparent text-white hover:bg-white/10 border-2 border-primary/40"
+                className="
+                  w-full max-w-[360px] mx-auto
+                  h-11 px-6
+                  text-[15px] font-semibold rounded-full
+                  bg-transparent text-white hover:bg-white/10
+                  border-2 border-white/20
+                "
               >
                 Learn More
                 <ArrowUpRight className="w-4 h-4 ml-2" />
@@ -150,7 +209,7 @@ export function GameCard(props: GameCardProps) {
 
           {/* Progress */}
           {showButtons && (
-            <div className="flex items-center justify-start gap-2">
+            <div className="flex items-center justify-start gap-2 pt-1">
               {(totalDots > 0 ? Array.from({ length: totalDots }) : Array.from({ length: 3 })).map((_, idx) => {
                 const isActive = totalDots > 0 ? idx === activeDot : idx === 0
                 return (
@@ -159,7 +218,7 @@ export function GameCard(props: GameCardProps) {
                     className="h-1 rounded-full"
                     style={{
                       width: 56,
-                      background: isActive ? "var(--primary)" : "rgb(255 255 255 / 0.22)",
+                      background: isActive ? "rgb(255 255 255 / 0.95)" : "rgb(255 255 255 / 0.22)",
                     }}
                   />
                 )
@@ -171,12 +230,17 @@ export function GameCard(props: GameCardProps) {
 
       {/* Pause Button */}
       {showButtons && (
-        <div className="absolute -bottom-3 -right-3">
+        <div className="absolute -bottom-1 -right-4">
           <button
-            className="backdrop-blur-xl rounded-[34px] flex items-center justify-center transition-colors"
+            className="
+              backdrop-blur-xl
+              flex items-center justify-center
+              transition-colors
+              rounded-b-[28px] rounded-t-[18px]
+            "
             style={{
-              width: 120,
-              height: 68,
+              width: PAUSE_W,
+              height: PAUSE_H,
               background: "color-mix(in oklab, black 55%, var(--primary) 18%)",
             }}
             aria-label={paused ? "Play" : "Pause"}

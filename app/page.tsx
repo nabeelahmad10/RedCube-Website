@@ -5,6 +5,8 @@ import { GameInfoSection } from "@/components/game-info-section"
 import { GameThumbnail } from "@/components/game-thumbnail"
 import { Footer } from "@/components/footer"
 import { HeroRotator } from "@/components/hero-rotator"
+import { NewsPeekCarousel } from "@/components/NewsPeekCarousel"
+
 
 export default function HomePage() {
   const exploreGames = [
@@ -39,7 +41,8 @@ export default function HomePage() {
         </div>
       </section>
 
-   
+   <NewsPeekCarousel />
+
 
       <Footer />
     </main>
