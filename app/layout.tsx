@@ -7,39 +7,34 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Burn Point Studios - Committed to Entertainment",
+  title: "RedCube - Committed to Entertainment",
   description:
-    "Experience cutting-edge gaming with Burn Point Studios. Own the Drift and explore our immersive game collection.",
+    "Experience unreal gaming with RedCube. Own the Drift and explore our immersive game collection.",
   generator: "Next.js",
-  applicationName: "Burn Point Studios",
+  applicationName: "RedCube",
   keywords: ["gaming", "burn point", "own the drift", "video games", "entertainment"],
-  authors: [{ name: "Burn Point Studios" }],
-  creator: "Burn Point Studios",
+  authors: [{ name: "RedCube" }],
+  creator: "RedCube",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Burn Point",
+    title: "RedCube",
   },
   formatDetection: {
     telephone: false,
   },
   icons: {
     icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
-    apple: "/apple-icon.png",
+    apple: "/apple-touch-icon.png",
+    other: [
+      { rel: "icon", url: "/android-chrome-192x192.png", sizes: "192x192" },
+      { rel: "icon", url: "/android-chrome-512x512.png", sizes: "512x512" },
+    ],
   },
 }
 

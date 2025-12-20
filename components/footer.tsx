@@ -66,7 +66,7 @@ export function Footer() {
 
         {/* Copyright */}
         <p className="mt-4 text-center text-[9px] sm:text-xs text-white/50">
-          © 2025 Burn Point Studios. Committed to Entertainment.
+          © 2025 RedCube. Committed to Entertainment.
         </p>
       </div>
     </footer>
